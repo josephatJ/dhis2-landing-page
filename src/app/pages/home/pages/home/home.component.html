@@ -1,9 +1,65 @@
 <div style="margin-top: 70px">
   <div class="container">
     <div class="row">
-      <div class="col-12">
+      <!--<div class="col-12">
         {{ userModules | json }}
+      </div> -->
+
+      <div class="row" *ngIf="!showingMore">
+        <div class="col-md-3 app" *ngFor="let userModule of userInitModules">
+          <img [src]="userModule.icon" height="50" width="auto" />
+          <a
+            [href]="userModule.defaultAction"
+            *ngIf="userModule.displayName == ''"
+            >{{ userModule.name }}</a
+          >
+
+          <a
+            [href]="userModule.defaultAction"
+            *ngIf="!userModule.displayName == ''"
+            >{{ userModule.displayName }}</a
+          >
+          <p>{{ userModule.description }}</p>
+        </div>
+
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-light btn-sm"
+            *ngIf="!showingMore && userModules.length > 0"
+            (click)="showMore()"
+          >
+            show more
+          </button>
+        </div>
       </div>
+
+      <div class="row" *ngIf="showingMore">
+        <div class="col-md-3 app" *ngFor="let userModule of userModules">
+          <img [src]="userModule.icon" height="50" width="auto" />
+          <a
+            [href]="userModule.defaultAction"
+            *ngIf="userModule.displayName == ''"
+            >{{ userModule.name }}</a
+          >
+
+          <a
+            [href]="userModule.defaultAction"
+            *ngIf="!userModule.displayName == ''"
+            >{{ userModule.displayName }}</a
+          >
+          <p>{{ userModule.description }}</p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-light btn-sm"
+        *ngIf="showingMore"
+        (click)="showMore()"
+      >
+        show less
+      </button>
     </div>
   </div>
 </div>

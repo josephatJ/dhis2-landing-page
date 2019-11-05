@@ -9,3 +9,10 @@
 .example-container > * {
   width: 100%;
 }
+
+.app {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 8px;
+  border-bottom: 1px solid #ebf0fa;
+}
