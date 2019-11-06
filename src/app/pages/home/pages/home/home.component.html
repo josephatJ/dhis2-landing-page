@@ -1,13 +1,14 @@
-<div style="margin-top: 70px">
+<div style="margin-top: -2px">
   <div class="container">
     <div class="row" *ngFor="let moduleGroup of groupedModules">
       <div class="col-12 header">
         <p>{{ moduleGroup.header }}</p>
       </div>
-      <!-- <div class="col-12 description" *ngIf="moduleGroup.description">
+      <div class="col-12 description" *ngIf="moduleGroup.description">
         <p>{{ moduleGroup.description }}</p>
-      </div> -->
+      </div>
       <div
+        style="margin-bottom: 4px"
         class="col-3"
         *ngFor="
           let userModule of moduleGroup['items']

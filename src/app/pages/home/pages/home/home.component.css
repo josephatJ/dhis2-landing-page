@@ -11,12 +11,13 @@
 }
 
 .description {
-  border-bottom: 1px solid #95c4e2;
+  /* border-bottom: 1px solid #95c4e2; */
 }
 
 .header {
-  border-bottom: 1px solid #6196be;
+  background-color: #6196be;
   padding: 5px;
+  color: #ffffff;
   margin-bottom: 8px;
 }
 .header p {
