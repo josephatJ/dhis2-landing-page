@@ -25,6 +25,17 @@ export function groupModules(configs: any, modules: Array<any>) {
       const flatArray = createArrayOfGroupedModules(configs);
       _.map(modules, module => {
         if (_.indexOf(flatArray, module.name) == -1) {
+          if (module.defaultAction.startsWith("..")) {
+            module.defaultAction = "../../" + module.defaultAction;
+
+            if (module.icon.startsWith("..")) {
+              module.icon = "../../" + module.icon;
+            }
+          } else {
+            if (module.icon.startsWith("..")) {
+              module.icon = "../../" + module.icon;
+            }
+          }
           itemsArray.push(module);
         }
       });
