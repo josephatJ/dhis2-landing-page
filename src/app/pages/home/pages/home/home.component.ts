@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     {
       id: "dataEntry",
       header: "Data entry modules",
-      description: "This apps/modules are used for data entry",
+      description: "These apps/modules are used for data entry",
       items: [
         "dhis-web-dataentry",
         "dhis-web-event-capture",
@@ -31,14 +31,15 @@ export class HomeComponent implements OnInit {
     {
       id: "reports",
       header: "Reports modules",
-      description: "These are apps you can get reports at easy",
+      description:
+        "These are apps/modules used for accessing/generating reports",
       items: ["dhis-web-reporting", "dhis-web-dashboard"]
     },
     {
       id: "analysisTools",
       header: "Analysis tools",
       description:
-        "These are analysis tools. You can generate reports in table, charts, maps and be able to download into excel for further analysis and use",
+        "These are analysis tools. You can generate reports in table, charts, maps etc formats and be able to download into excel for further analysis and use",
       items: [
         "dhis-web-pivot",
         "dhis-web-visualizer",
@@ -49,9 +50,8 @@ export class HomeComponent implements OnInit {
     },
     {
       id: "others",
-      header: "Other useful appps",
-      description:
-        "There are number of apps to help you get the usefullness of dhis2 in data use",
+      header: "Other modules",
+      description: "More apps to help you get into more dhis2 features",
       items: ["dhis-web-data-quality", "dhis-web-cache-cleaner", "Scorecard"]
     }
   ];

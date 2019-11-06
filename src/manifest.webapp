@@ -1,8 +1,8 @@
 
 {
     "version": "1.0.0-alpha.1",
-    "name": "Seed App",
-    "description": "Seed App",
+    "name": "Dhis2 landing page",
+    "description": "Dhis2 landing page",
     "appType": "APP",
     "launch_path": "index.html",
     "icons": {
