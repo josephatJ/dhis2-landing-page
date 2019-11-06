@@ -16,11 +16,11 @@ export class HomeComponent implements OnInit {
   otherUserModules: Array<{}> = [];
   showingMore: boolean = false;
   defaultApps: Array<string> = [
+    "dhis-web-dataentry",
     "dhis-web-dashboard",
     "dhis-web-pivot",
     "dhis-web-visualizer",
     "dhis-web-event-visualizer",
-    "dhis-web-dataentry",
     "dhis-web-event-reports",
     "dhis-web-cache-cleaner",
     "dhis-web-data-quality"
