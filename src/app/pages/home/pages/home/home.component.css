@@ -10,9 +10,16 @@
   width: 100%;
 }
 
-.app {
-  margin-top: 16px;
-  margin-bottom: 16px;
-  padding: 8px;
-  border-bottom: 1px solid #ebf0fa;
+.description {
+  border-bottom: 1px solid #95c4e2;
+}
+
+.header {
+  border-bottom: 1px solid #6196be;
+  padding: 5px;
+  margin-bottom: 8px;
+}
+.header p {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem !important;
 }

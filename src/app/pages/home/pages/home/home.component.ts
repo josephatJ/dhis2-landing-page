@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { NgxDhis2HttpClientService } from "@iapps/ngx-dhis2-http-client";
 import { HttpClient } from "@angular/common/http";
+import { groupModules } from "src/app/core";
 
 @Component({
   selector: "app-home",
@@ -13,17 +14,46 @@ export class HomeComponent implements OnInit {
   constructor(private httpClient: HttpClient) {}
 
   userInitModules: Array<{}> = [];
-  otherUserModules: Array<{}> = [];
-  showingMore: boolean = false;
-  defaultApps: Array<string> = [
-    "dhis-web-dataentry",
-    "dhis-web-dashboard",
-    "dhis-web-pivot",
-    "dhis-web-visualizer",
-    "dhis-web-event-visualizer",
-    "dhis-web-event-reports",
-    "dhis-web-cache-cleaner",
-    "dhis-web-data-quality"
+  groupedModules: Array<{}> = [];
+  shouldSlice: boolean = true;
+  configurations = [
+    {
+      id: "dataEntry",
+      header: "Data entry modules",
+      description: "This apps/modules are used for data entry",
+      items: [
+        "dhis-web-dataentry",
+        "dhis-web-event-capture",
+        "National-DQA",
+        "dhis-web-tracker-capture"
+      ]
+    },
+    {
+      id: "reports",
+      header: "Reports modules",
+      description: "These are apps you can get reports at easy",
+      items: ["dhis-web-reporting", "dhis-web-dashboard"]
+    },
+    {
+      id: "analysisTools",
+      header: "Analysis tools",
+      description:
+        "These are analysis tools. You can generate reports in table, charts, maps and be able to download into excel for further analysis and use",
+      items: [
+        "dhis-web-pivot",
+        "dhis-web-visualizer",
+        "dhis-web-maps",
+        "dhis-web-event-reports",
+        "dhis-web-event-visualizer"
+      ]
+    },
+    {
+      id: "others",
+      header: "Other useful appps",
+      description:
+        "There are number of apps to help you get the usefullness of dhis2 in data use",
+      items: ["dhis-web-data-quality", "dhis-web-cache-cleaner", "Scorecard"]
+    }
   ];
 
   ngOnInit() {
@@ -31,63 +61,17 @@ export class HomeComponent implements OnInit {
       .get("../../../dhis-web-commons/menu/getModules.action")
       .subscribe(modules => {
         if (modules) {
-          //this.userModules = modules["modules"];
-          var count = 0;
-
-          modules["modules"].forEach(user => {
-            count++;
-
-            if (user.icon.startsWith("..")) {
-              user.icon = "../../" + user.icon;
-
-              if (user.defaultAction.startsWith("..")) {
-                user.defaultAction == "../../" + user.defaultAction;
-              }
-
-              if (modules["modules"].length == count) {
-                this.userModules = modules["modules"];
-                this.otherUserModules = this.userModules;
-
-                //load apps to display by default
-                this.defaultApps.forEach(app => {
-                  var appData = this.userModules.find(function(element) {
-                    return element.name == app;
-                  });
-
-                  this.userInitModules.push(appData);
-                  console.log(this.userInitModules);
-                });
-              }
-            } else {
-              if (user.defaultAction.startsWith("..")) {
-                user.defaultAction == "../../" + user.defaultAction;
-              }
-
-              if (modules["modules"].length == count) {
-                this.userModules = modules["modules"];
-                this.otherUserModules = this.userModules;
-
-                //load apps to display by default
-                this.defaultApps.forEach(app => {
-                  var appData = this.userModules.find(function(element) {
-                    return element.name == app;
-                  });
-
-                  this.userInitModules.push(appData);
-                  console.log(this.userInitModules);
-                });
-              }
-            }
-          });
+          this.userModules = modules["modules"];
+          this.userInitModules = modules["modules"];
+          this.groupedModules = groupModules(
+            this.configurations,
+            modules["modules"]
+          );
         }
       });
   }
 
   showMore() {
-    if (this.showingMore) {
-      this.showingMore = false;
-    } else {
-      this.showingMore = true;
-    }
+    this.shouldSlice = !this.shouldSlice;
   }
 }

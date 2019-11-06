@@ -1,65 +1,49 @@
 <div style="margin-top: 70px">
   <div class="container">
-    <div class="row">
-      <!--<div class="col-12">
-        {{ userModules | json }}
+    <div class="row" *ngFor="let moduleGroup of groupedModules">
+      <div class="col-12 header">
+        <p>{{ moduleGroup.header }}</p>
+      </div>
+      <!-- <div class="col-12 description" *ngIf="moduleGroup.description">
+        <p>{{ moduleGroup.description }}</p>
       </div> -->
-
-      <div class="row" *ngIf="!showingMore">
-        <div class="col-md-3 app" *ngFor="let userModule of userInitModules">
-          <img [src]="userModule.icon" height="50" width="auto" />
-          <a
-            [href]="userModule.defaultAction"
-            *ngIf="userModule.displayName == ''"
-            >{{ userModule.name }}</a
-          >
-
-          <a
-            [href]="userModule.defaultAction"
-            *ngIf="!userModule.displayName == ''"
-            >{{ userModule.displayName }}</a
-          >
-          <p>{{ userModule.description }}</p>
-        </div>
-
-        <div class="col-md-12">
-          <button
-            type="button"
-            class="btn btn-light btn-sm"
-            *ngIf="!showingMore && userModules.length > 0"
-            (click)="showMore()"
-          >
-            show more
-          </button>
-        </div>
-      </div>
-
-      <div class="row" *ngIf="showingMore">
-        <div class="col-md-3 app" *ngFor="let userModule of userModules">
-          <img [src]="userModule.icon" height="50" width="auto" />
-          <a
-            [href]="userModule.defaultAction"
-            *ngIf="userModule.displayName == ''"
-            >{{ userModule.name }}</a
-          >
-
-          <a
-            [href]="userModule.defaultAction"
-            *ngIf="!userModule.displayName == ''"
-            >{{ userModule.displayName }}</a
-          >
-          <p>{{ userModule.description }}</p>
-        </div>
-      </div>
-
-      <button
-        type="button"
-        class="btn btn-light btn-sm"
-        *ngIf="showingMore"
-        (click)="showMore()"
+      <div
+        class="col-3"
+        *ngFor="
+          let userModule of moduleGroup['items']
+            | filterItems: moduleGroup['id']:3:shouldSlice
+        "
       >
-        show less
-      </button>
+        <img [src]="userModule.icon" height="50" width="auto" />
+        <a
+          [href]="userModule.defaultAction"
+          *ngIf="userModule.displayName == ''"
+          >{{ userModule.name }}</a
+        >
+
+        <a
+          [href]="userModule.defaultAction"
+          *ngIf="!userModule.displayName == ''"
+          >{{ userModule.displayName }}</a
+        >
+        <p>{{ userModule.description }}</p>
+      </div>
     </div>
+    <button
+      type="button"
+      class="btn btn-light btn-sm"
+      *ngIf="!shouldSlice && groupedModules.length > 0"
+      (click)="showMore()"
+    >
+      show less
+    </button>
+    <button
+      type="button"
+      class="btn btn-light btn-sm"
+      *ngIf="shouldSlice && groupedModules.length > 0"
+      (click)="showMore()"
+    >
+      show more
+    </button>
   </div>
 </div>
