@@ -44,9 +44,10 @@ export function groupModules(configs: any, modules: Array<any>) {
       header: groupItem.header,
       id: groupItem.id,
       description: groupItem.description,
-      items: itemsArray
+      items: itemsArray.filter(item => item)
     });
   });
+  console.log(groupedModules);
   return groupedModules;
 }
 
