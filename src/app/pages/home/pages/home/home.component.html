@@ -1,5 +1,5 @@
 <div style="margin-top: 70px">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row" *ngFor="let moduleGroup of groupedModules">
       <div class="col-12 header">
         <p>{{ moduleGroup.header }}</p>
@@ -15,18 +15,32 @@
             | filterItems: moduleGroup['id']:3:shouldSlice
         "
       >
-        <img [src]="userModule.icon" height="50" width="auto" />
-        <a
-          [href]="userModule.defaultAction"
-          *ngIf="userModule.displayName == ''"
-          >{{ userModule.name }}</a
-        >
-
-        <a
-          [href]="userModule.defaultAction"
-          *ngIf="!userModule.displayName == ''"
-          >{{ userModule.displayName }}</a
-        >
+        <div class="card row" href="userModule.defaultAction">
+          <div class="col-3" style="">
+            <img
+              class="text-left"
+              [src]="userModule.icon"
+              alt=".."
+              height="50"
+              width="auto"
+            />
+          </div>
+          <div class="col-9" style="">
+            <h5
+              *ngIf="userModule.displayName == ''"
+              style="color: #2C2D30; letter-spacing: 0.07em; font-weight: 700; font-size: 0.9em;"
+            >
+              {{ userModule.name }}
+            </h5>
+            <h5
+              *ngIf="!userModule.displayName == ''"
+              style="color: #2C2D30; letter-spacing: 0.07em; font-weight: 700; font-size: 0.9em;"
+            >
+              {{ userModule.displayName }}
+            </h5>
+            <p style="color: #3e5184">{{ userModule.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
     <button
