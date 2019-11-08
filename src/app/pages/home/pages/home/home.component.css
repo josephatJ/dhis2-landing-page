@@ -11,9 +11,11 @@
 }
 
 .header {
-  background-color: #bcd89d;
-  padding: 5px;
+  background-color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
   margin-bottom: 8px;
+  border-bottom: solid thin lightskyblue;
 }
 .header p {
   margin-top: 0.3rem;
@@ -22,11 +24,39 @@
 
 .card {
   height: 90px;
-  border: solid 1px #e2e2e2;
+  padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 4px;
-  padding: 8px;
 }
+
+.card :hover {
+  background-color: #e6e6ff;
+}
+
 .card-title {
   text-align: left;
 }
+
+/* .resize {
+  transition: transform 2s ease-in-out;
+  -webkit-transition: all 1.17s cubic-bezier(0.34, 1.61, 0.7, 1);
+  transition: all 1.17s cubic-bezier(0.34, 1.61, 0.7, 1);
+}
+
+.resize :hover {
+  transform: scale(1.1);
+  box-shadow: 0 0.5rem 1rem transparent !important;
+} */
+
+/* .resize :hover > .media :hover {
+  font-size: 1rem;
+  box-shadow: 0 0.5rem 1rem transparent !important;
+}
+.resize :hover > .media :hover > .media-body :hover {
+  font-size: 1rem;
+  box-shadow: 0 0.5rem 1rem transparent !important;
+}
+
+.resize :hover > .media :hover > .media-body :hover > .h5-h :hover {
+  font-size: 1rem;
+  box-shadow: 0 0.5rem 1rem transparent !important;
+} */

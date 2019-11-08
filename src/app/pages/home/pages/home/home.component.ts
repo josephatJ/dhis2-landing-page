@@ -3,15 +3,51 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { NgxDhis2HttpClientService } from "@iapps/ngx-dhis2-http-client";
 import { HttpClient } from "@angular/common/http";
 import { groupModules } from "src/app/core";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+  // ...
+} from "@angular/animations";
 
 @Component({
   selector: "app-home",
+  animations: [
+    trigger("openClose", [
+      // ...
+      state(
+        "open",
+        style({
+          //hover styles
+          boxShadow: "0 0.5rem 1rem gray"
+        })
+      ),
+      state("closed", style({})),
+      transition("open => closed", [animate("0.1s")]),
+      transition("closed => open", [animate("0.1s")])
+    ])
+  ],
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit {
   userModules: any;
   constructor(private httpClient: HttpClient) {}
+
+  isOpen = true;
+  elemId: string;
+
+  toggle(id) {
+    this.elemId = id;
+    this.isOpen = !this.isOpen;
+  }
+
+  toggleOut() {
+    this.elemId = "";
+    this.isOpen = !this.isOpen;
+  }
 
   userInitModules: Array<{}> = [];
   groupedModules: Array<{}> = [];
