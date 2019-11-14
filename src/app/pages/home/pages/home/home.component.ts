@@ -34,6 +34,7 @@ import {
 })
 export class HomeComponent implements OnInit {
   userModules: any;
+
   constructor(private httpClient: HttpClient) {}
 
   isOpen = true;
@@ -92,6 +93,8 @@ export class HomeComponent implements OnInit {
     }
   ];
 
+  searchTerm: string;
+
   ngOnInit() {
     this.httpClient
       .get("../../../dhis-web-commons/menu/getModules.action")
@@ -103,11 +106,17 @@ export class HomeComponent implements OnInit {
             this.configurations,
             modules["modules"]
           );
+
+          console.log(this.groupedModules[3]);
         }
       });
   }
 
   showMore() {
     this.shouldSlice = !this.shouldSlice;
+  }
+
+  searchApps(AppName) {
+    console.log(AppName);
   }
 }

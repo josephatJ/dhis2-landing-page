@@ -2,8 +2,23 @@
   <div class="container">
     <div *ngFor="let moduleGroup of groupedModules">
       <div class="row" *ngIf="moduleGroup['items'].length > 0">
-        <div class="col-12 header">
+        <div class="col-12 header" *ngIf="moduleGroup.id !== 'others'">
           <h5>{{ moduleGroup.header }}</h5>
+        </div>
+
+        <div class="col-12 header" *ngIf="moduleGroup.id == 'others'">
+          <h5 style="display: inline;">{{ moduleGroup.header }}</h5>
+
+          <div style="display: inline;">
+            <input
+              type="text"
+              id="searchMod"
+              #searchMod
+              style="margin-left: 15px;border:solid thin #a9d2e2;border-radius:2px;box-shadow: 2px 2px 3px 1px #e6f5ff;"
+              class=""
+              [(ngModel)]="searchTerm"
+            />
+          </div>
         </div>
 
         <div class="col-12 description" *ngIf="moduleGroup.description">
@@ -17,7 +32,7 @@
           class="col-3 resize"
           *ngFor="
             let userModule of moduleGroup['items']
-              | filterItems: moduleGroup['id']:3:shouldSlice
+              | filterItems: moduleGroup['id']:3:shouldSlice:searchTerm
           "
         >
           <a
@@ -42,6 +57,9 @@
                 style="font-size: 0.9rem;"
               >
                 {{ userModule.name }}
+                <span style="display:hidden;">{{
+                  userModule.displayName
+                }}</span>
               </h5>
               <h5
                 *ngIf="!userModule.displayName == ''"
