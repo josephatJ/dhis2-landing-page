@@ -106,17 +106,11 @@ export class HomeComponent implements OnInit {
             this.configurations,
             modules["modules"]
           );
-
-          console.log(this.groupedModules[3]);
         }
       });
   }
 
   showMore() {
     this.shouldSlice = !this.shouldSlice;
-  }
-
-  searchApps(AppName) {
-    console.log(AppName);
   }
 }

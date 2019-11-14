@@ -19,7 +19,12 @@ export class FilterItemsPipe implements PipeTransform {
 
       if (searchTerm) {
         value = _.filter(value, function(module) {
-          return module.name.indexOf(searchTerm) >= 0;
+          return (
+            module.name.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0 ||
+            module.displayName
+              .toLowerCase()
+              .indexOf(searchTerm.toLowerCase()) >= 0
+          );
         });
       }
 

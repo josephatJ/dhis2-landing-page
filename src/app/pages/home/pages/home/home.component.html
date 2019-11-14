@@ -9,7 +9,7 @@
         <div class="col-12 header" *ngIf="moduleGroup.id == 'others'">
           <h5 style="display: inline;">{{ moduleGroup.header }}</h5>
 
-          <div style="display: inline;">
+          <div style="display: inline;" *ngIf="!shouldSlice">
             <input
               type="text"
               id="searchMod"
