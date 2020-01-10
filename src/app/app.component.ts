@@ -19,7 +19,7 @@ export class AppComponent {
     this.translate.use("en");
 
     // Set application title
-    this.setTitle("Landing Page");
+    this.setTitle("DHIS2-HMIS");
   }
 
   public setTitle(newTitle: string) {
