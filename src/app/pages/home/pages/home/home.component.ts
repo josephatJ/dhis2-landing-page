@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.httpClient
-      .get("../api/dataStore/landing-page-configs/menu-configurations")
+      .get("../../dataStore/landing-page-configs/menu-configurations")
       .subscribe((configs: Array<{}>) => {
         if (configs) {
           this.configurations = configs;
