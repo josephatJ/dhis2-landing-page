@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
+  configurations: Array<{}>;
   userInitModules: Array<{}> = [];
   groupedModules: Array<{}> = [];
   shouldSlice: boolean = true;
@@ -94,53 +95,22 @@ export class HomeComponent implements OnInit {
   ]; */
 
   //UPGRADE CONFIGURATIONS
-  configurations = [
-    {
-      id: "dataEntry",
-      header: "Data entry modules",
-      description: "These apps/modules are used for data entry",
-      items: [
-        "dhis-web-dataentry",
-        "dhis-web-capture",
-        "National-DQA",
-        "dhis-web-tracker-capture"
-      ]
-    },
-    {
-      id: "reports",
-      header: "Reports modules",
-      description:
-        "These are apps/modules used for accessing/generating reports",
-      items: ["dhis-web-reports", "dhis-web-dashboard"]
-    },
-    {
-      id: "analysisTools",
-      header: "Analysis tools",
-      description:
-        "These are analysis tools. You can generate reports in table, charts, maps etc formats and be able to download into excel for further analysis and use",
-      items: [
-        "dhis-web-pivot",
-        "dhis-web-data-visualizer",
-        "dhis-web-maps",
-        "dhis-web-event-reports",
-        "dhis-web-event-visualizer"
-      ]
-    },
-    {
-      id: "others",
-      header: "Other modules",
-      description: "More apps to help you get into more dhis2 features",
-      items: ["dhis-web-data-quality", "dhis-web-cache-cleaner", "Scorecard"]
-    }
-  ];
 
   searchTerm: string;
 
   ngOnInit() {
     this.httpClient
+      .get("../api/dataStore/landing-page-configs/menu-configurations")
+      .subscribe((configs: Array<{}>) => {
+        if (configs) {
+          this.configurations = configs;
+        }
+      });
+
+    this.httpClient
       .get("../../../dhis-web-commons/menu/getModules.action")
       .subscribe(modules => {
-        if (modules) {
+        if (modules && this.configurations) {
           this.userModules = modules["modules"];
           this.userInitModules = modules["modules"];
           this.groupedModules = groupModules(
